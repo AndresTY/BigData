@@ -1,0 +1,26 @@
+{
+  "dev": {
+    "lambda_handler": "lambda_function.lambda_handler",
+    "events": [
+      {
+        "function": "lambda_function.lambda_handler",
+        "event_source": {
+          "arn": "arn:aws:s3:::dolar-raw-ducuara",
+          "enabled": true,
+          "events": [
+            "s3:ObjectCreated:*"
+          ]
+        }
+      }
+    ],
+    "keep_warm": false,
+    "role_name": "LabRole",
+    "profile_name": null,
+    "manage_roles": false,
+    "apigateway_enabled": false,
+    "project_name": "to_csv_test",
+    "runtime": "python3.9",
+    "aws_region": "us-east-1",
+    "s3_bucket": "dolar-raw-zappa-ducuara"
+  }
+}
