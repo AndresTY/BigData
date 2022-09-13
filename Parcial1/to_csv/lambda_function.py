@@ -2,6 +2,7 @@
 import json
 import boto3
 import function
+import time
 
 #configuracion del bucket
 S3_BUCKET = 'dolar-raw-ducuara'
@@ -25,5 +26,5 @@ def lambda_handler(event, context):
     f.write(function.data_to_csv(file_content)) #escritura de los datos transformados
     f.close()
   with open("/tmp/data_raw.csv", "rb") as f:
-    s3.upload_fileobj(f, "dolar-processed-ducuara", "dolar-timestamp.csv") #caarge archivo CSV
+    s3.upload_fileobj(f, "dolar-processed-ducuara", f"dolar-{time.time()}.csv") #caarge archivo CSV
   return {'statusCode': 200,'body': 'check'}
